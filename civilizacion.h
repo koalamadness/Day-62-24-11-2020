@@ -4,6 +4,8 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <list>
+#include "aldeano.h"
 
 using namespace std;
 
@@ -14,6 +16,7 @@ private:
   float ubX;
   float ubY;
   float punt;
+  list<Aldeano> aldeanos;
 public:
   Civilizacion();
   Civilizacion(const string& n, 
@@ -32,6 +35,24 @@ public:
 
   void setPunt(const float p);
   float getPunt();
+
+  void agregarFinal(const Aldeano &a);
+  void agregarInicio(const Aldeano &a); 
+
+  void print();     
+
+  void eliminarNombre(const string &nombre);
+  void eliminarSalud(float sal);
+  void eliminarEdad();  
+
+  void ordenarNombre();
+  void ordenarEdad();
+  void ordenarSalud();  
+
+  Aldeano* buscar(const Aldeano& a);  
+
+  void respaldar_aldeanos();
+  void recuperar_aldeanos(const string& nomCiv);
 
   friend ostream& operator<<(ostream& out, const Civilizacion& c)
   {
@@ -62,8 +83,6 @@ public:
 
     return i;
   }
-
-  
 
   bool operator==(const Civilizacion& c)
   {

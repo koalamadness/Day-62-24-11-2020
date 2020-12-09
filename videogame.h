@@ -33,6 +33,10 @@ public:
   void setNombreUs(const string& nus);
   string getNombreUs();
 
+  void respaldar();
+
+  void recuperar();
+
   friend Videogame& operator<<(Videogame& vid, const Civilizacion& c)
   {
     vid.agregarCivilizacion(c);

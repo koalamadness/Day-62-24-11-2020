@@ -1,6 +1,7 @@
 #include <iostream>
 #include "videogame.h"
 #include "menu.h"
+#include "menuCiv.h"
 
 int main() {
   unsigned int op;
@@ -16,7 +17,7 @@ int main() {
   {
     myMenu.printMenu();
 
-    cin >> op;
+    cin >> op; 
     myMenu.setOpcion(op);
 
     switch(myMenu.getOpcion())
@@ -246,6 +247,40 @@ int main() {
       }
 
       case 12:
+      {
+        cin.ignore();
+        cout << "Nombre de la civilización a buscar: " << endl;
+
+        getline(cin, myString);
+
+        myCiv.setNombre(myString);
+
+        Civilizacion *ptr = myVid.buscar(myCiv);
+
+        if (ptr == nullptr)
+        {
+          cout << "No encontrado" << endl;
+        }
+        else
+        {
+          menu(*ptr);
+        }                
+        break;
+      }      
+
+      case 13:
+      {
+        myVid.respaldar();
+        break;
+      }
+
+      case 14:
+      {
+        myVid.recuperar();    
+        break;
+      }      
+
+      case 15:
       {
         myMenu.setBandera(false);        
         break;

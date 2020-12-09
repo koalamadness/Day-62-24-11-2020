@@ -100,6 +100,44 @@ Civilizacion Videogame::getUltimo()
   }
 }
 
+void Videogame::respaldar()
+{
+    ofstream archivo("civilizaciones.txt", ios::out);
+    // Quitamos el parametro
+    for (int i = 0; i < arreglo.size(); ++i) {
+        Civilizacion &c = arreglo[i];
+        archivo << c.getNombre() << endl;
+        c.respaldar_aldeanos();
+    }
+    archivo.close();
+}
+
+void Videogame::recuperar()
+{
+  ifstream archivo("civilizaciones.txt");
+  if (archivo.is_open())
+  {
+    string temp;
+    Civilizacion civ;
+
+    while(true)
+    {
+      getline(archivo, temp);
+      if (archivo.eof()) 
+      {
+        break;
+      }
+      civ.setNombre(temp);
+
+      civ.recuperar_aldeanos(temp);
+
+      agregarCivilizacion(civ);
+
+    }
+  }
+  archivo.close();  
+}
+
 void Videogame::ordenar()
 {
   sort(arreglo.begin(), arreglo.end());
